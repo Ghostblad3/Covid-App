@@ -1,0 +1,25 @@
+.paper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.paper_top {
+  width: 300px;
+  min-width: 200px;
+  margin: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.bar {
+  width: 90%;
+  min-height: 400px;
+  z-index: 0;
+}
+
+@media (max-width: 540px) {
+  .paper_top {
+    width: 90%;
+  }
+}

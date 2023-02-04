@@ -1,0 +1,30 @@
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: databases-initialize-depl
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: databases-initialize
+#   template:
+#     metadata:
+#       labels:
+#         app: databases-initialize
+#     spec:
+#       containers:
+#         - name: databases-initialize
+#           image: <docker_username>/databases-initialize
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: databases-initialize
+spec:
+  template:
+    spec:
+      containers:
+        - name: databases-initialize
+          image: <docker_username>/databases-initialize
+          command: ["npm", "start"]
+      restartPolicy: Never
+  backoffLimit: 4

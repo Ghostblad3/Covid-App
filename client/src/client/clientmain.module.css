@@ -1,0 +1,60 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.screen {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.screen_top {
+  width: 100%;
+  height: 50px;
+  background-color: #695cfe;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.screen_bottom {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.main_container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f6f6f6; /* Grey color */
+}
+
+/* MUST BE SET TO FLEX BECAUSE MAP USES 100% HEIGHT AND WILL OVERFLOW  */
+.main_container_internal {
+  width: calc(100% - 40px);
+  height: calc(100% - 40px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 360px) {
+  .screen {
+    width: 360px;
+  }
+}
+
+@media (max-height: 853px) {
+  .screen {
+    height: 853px;
+  }
+}

@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-cases-db-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-cases-db
+  template:
+    metadata:
+      labels:
+        app: mysql-cases-db
+    spec:
+      containers:
+        - name: mysql-cases-db
+          image: <docker_username>/mysql-image
+          resources:
+            limits:
+              cpu: 1500m
+            requests:
+              cpu: 1500m
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-cases-db-srv
+spec:
+  selector:
+    app: mysql-cases-db
+  ports:
+    - name: db
+      protocol: TCP
+      port: 3306
+      targetPort: 3306

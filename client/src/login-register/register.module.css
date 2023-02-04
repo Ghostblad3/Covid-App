@@ -1,0 +1,44 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.screen {
+  height: 100vh;
+  width: 100vw;
+  background-color: white;
+  background-color: #3848aa;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.center {
+  width: 400px;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+}
+
+@media (max-width: 660px) {
+  .center {
+    width: 350px;
+  }
+}
+
+@media (max-width: 360px) {
+  .screen {
+    width: 360px;
+  }
+}
+
+@media (max-height: 610px) {
+  .screen {
+    height: 610px;
+  }
+}

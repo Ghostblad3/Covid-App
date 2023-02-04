@@ -1,0 +1,68 @@
+.navbar_container_nocollapse {
+  height: 100%;
+  width: 200px;
+  background-color: white;
+}
+
+.navbar_top_space_nocollapse {
+  height: 80px;
+  width: 200px;
+  background-color: white;
+}
+
+.navbar_container_collapse {
+  height: 100%;
+  width: 50px;
+  background-color: white;
+}
+
+.navbar_top_space_collapse {
+  height: 80px;
+  width: 50px;
+  background-color: white;
+}
+
+.collapse_button {
+  float: right;
+}
+
+.navbar_item {
+  height: 45px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: grey;
+}
+
+.navbar_item_focused {
+  list-style-type: none;
+  height: 45px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: grey;
+  background-color: #eeeeee;
+}
+
+.navbar_item_icon {
+  flex: 20%;
+  display: grid;
+  place-items: center;
+}
+
+.navbar_item_text {
+  flex: 60%;
+}
+
+.navbar_item:hover {
+  background-color: #eeeeee;
+  cursor: pointer;
+}
+
+@media (max-width: 650px) {
+  .navbar_container_nocollapse {
+    width: 200px;
+    position: absolute;
+    z-index: 1;
+  }
+}

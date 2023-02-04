@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-poi-info-db-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-poi-info-db
+  template:
+    metadata:
+      labels:
+        app: mysql-poi-info-db
+    spec:
+      containers:
+        - name: mysql-poi-info-db
+          image: <docker_username>/mysql-image
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-poi-info-db-srv
+spec:
+  selector:
+    app: mysql-poi-info-db
+  ports:
+    - name: db
+      protocol: TCP
+      port: 3306
+      targetPort: 3306

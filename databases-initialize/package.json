@@ -1,0 +1,21 @@
+{
+  "name": "database-scripts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "commonjs",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "date-fns": "^2.29.1",
+    "haversine-distance": "^1.2.1",
+    "lodash": "^4.17.21",
+    "mongoose": "^6.7.2",
+    "mysql2": "^2.3.3"
+  },
+  "scripts": {
+    "start": "node src/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

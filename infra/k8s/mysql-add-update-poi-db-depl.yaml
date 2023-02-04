@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-add-update-poi-db-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-add-update-poi-db
+  template:
+    metadata:
+      labels:
+        app: mysql-add-update-poi-db
+    spec:
+      containers:
+        - name: mysql-add-update-poi-db
+          image: <docker_username>/mysql-image
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-add-update-poi-db-srv
+spec:
+  selector:
+    app: mysql-add-update-poi-db
+  ports:
+    - name: db
+      protocol: TCP
+      port: 3306
+      targetPort: 3306

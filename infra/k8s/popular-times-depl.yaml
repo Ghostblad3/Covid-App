@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: popular-times-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: popular-times
+  template:
+    metadata:
+      labels:
+        app: popular-times
+    spec:
+      containers:
+        - name: popular-times
+          image: <docker_username>/popular-times
+          env:
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: URL
+              value: "http://nats-srv:4222"
+            - name: CLUSTER_ID
+              value: covid-app
+          resources:
+            limits:
+              cpu: 200m
+            requests:
+              cpu: 100m
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: popular-times-srv
+spec:
+  selector:
+    app: popular-times
+  ports:
+    - name: db
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

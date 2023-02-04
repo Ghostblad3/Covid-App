@@ -1,0 +1,36 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.dec_case_top {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+}
+
+.dec_case_error_stack {
+  margin: 0px 0px 15px 0px;
+  width: 100%;
+}
+
+.dec_case_top_center {
+  margin: 20px 0px;
+  width: 300px;
+}
+
+.dec_case_button {
+  margin: 15px 0px 0px 0px;
+}
+
+@media (max-width: 430px) {
+  .dec_case_top_center {
+    width: calc(100% - 40px);
+    display: flex;
+    flex-direction: column;
+  }
+}

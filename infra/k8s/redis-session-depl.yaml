@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-session-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-session
+  template:
+    metadata:
+      labels:
+        app: redis-session
+    spec:
+      containers:
+        - name: redis-session
+          image: redis
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-session-srv
+spec:
+  selector:
+    app: redis-session
+  ports:
+    - name: redis-session
+      protocol: TCP
+      port: 6379
+      targetPort: 6379

@@ -1,0 +1,48 @@
+.name_text {
+  text-align: center;
+}
+
+.map_popup_typography {
+  font-size: 14px !important;
+}
+
+.popularity_diagram {
+  height: 130px;
+  width: 100%;
+}
+
+.popup {
+  width: 350px;
+}
+
+.popup_content {
+  width: calc(350px - 48px);
+}
+
+.leaflet-popup-content {
+  margin: 13px 24px;
+}
+
+@media (max-width: 539px), (max-height: 853px) {
+  .map_popup_typography {
+    font-size: 12px !important;
+  }
+
+  .popup {
+    width: 230px;
+  }
+
+  .popup_content {
+    width: 188px;
+  }
+
+  .popularity_diagram {
+    height: 100px;
+  }
+}
+
+@media (max-width: 360px) {
+  .map_popup_typography {
+    font-size: 11px !important;
+  }
+}

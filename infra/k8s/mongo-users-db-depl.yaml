@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-users-db-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo-users-db
+  template:
+    metadata:
+      labels:
+        app: mongo-users-db
+    spec:
+      containers:
+        - name: mongo-users-db
+          image: mongo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-users-db-srv
+spec:
+  selector:
+    app: mongo-users-db
+  ports:
+    - name: db
+      protocol: TCP
+      port: 27017
+      targetPort: 27017

@@ -1,0 +1,79 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-srv
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  tls:
+    - hosts:
+        - covid.app
+      secretName: covid-app-tls
+  rules:
+    - host: covid.app
+      http:
+        paths:
+          - path: /login-register/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: login-register-srv
+                port:
+                  number: 3000
+          - path: /poi-info/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: poi-info-srv
+                port:
+                  number: 3000
+          - path: /cases/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: declare-case-srv
+                port:
+                  number: 3000
+          - path: /visits/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: visits-srv
+                port:
+                  number: 3000
+          - path: /popular-times/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: popular-times-srv
+                port:
+                  number: 3000
+          - path: /contact-with-cases/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: contact-with-cases-srv
+                port:
+                  number: 3000
+          - path: /visits-cases-stats/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: visits-cases-stats-srv
+                port:
+                  number: 3000
+          - path: /add-update-poi/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: add-update-poi-srv
+                port:
+                  number: 3000
+          - path: /?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: client-srv
+                port:
+                  number: 3000

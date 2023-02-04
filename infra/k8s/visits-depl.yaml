@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: visits-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: visits
+  template:
+    metadata:
+      labels:
+        app: visits
+    spec:
+      containers:
+        - name: visits
+          image: <docker_username>/visits
+          env:
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: URL
+              value: "http://nats-srv:4222"
+            - name: CLUSTER_ID
+              value: covid-app
+          resources:
+            limits:
+              cpu: 200m
+            requests:
+              cpu: 100m
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: visits-srv
+spec:
+  selector:
+    app: visits
+  ports:
+    - name: db
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

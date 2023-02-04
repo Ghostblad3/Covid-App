@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-visits-cases-stats-db-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-visits-cases-stats-db
+  template:
+    metadata:
+      labels:
+        app: mysql-visits-cases-stats-db
+    spec:
+      containers:
+        - name: mysql-visits-cases-stats-db
+          image: <docker_username>/mysql-image
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-visits-cases-stats-db-srv
+spec:
+  selector:
+    app: mysql-visits-cases-stats-db
+  ports:
+    - name: db
+      protocol: TCP
+      port: 3306
+      targetPort: 3306

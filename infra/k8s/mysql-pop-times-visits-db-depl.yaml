@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-pop-times-visits-db-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql-pop-times-visits-db
+  template:
+    metadata:
+      labels:
+        app: mysql-pop-times-visits-db
+    spec:
+      containers:
+        - name: mysql-pop-times-visits-db
+          image: <docker_username>/mysql-image
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-pop-times-visits-db-srv
+spec:
+  selector:
+    app: mysql-pop-times-visits-db
+  ports:
+    - name: db
+      protocol: TCP
+      port: 3306
+      targetPort: 3306

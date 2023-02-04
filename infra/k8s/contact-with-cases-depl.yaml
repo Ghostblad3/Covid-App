@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: contact-with-cases-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: contact-with-cases
+  template:
+    metadata:
+      labels:
+        app: contact-with-cases
+    spec:
+      containers:
+        - name: contact-with-cases
+          image: <docker_username>/contact-with-cases
+          env:
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: URL
+              value: "http://nats-srv:4222"
+            - name: CLUSTER_ID
+              value: covid-app
+          resources:
+            limits:
+              cpu: 200m
+            requests:
+              cpu: 100m
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: contact-with-cases-srv
+spec:
+  selector:
+    app: contact-with-cases
+  ports:
+    - name: db
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
