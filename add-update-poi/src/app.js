@@ -56,6 +56,14 @@ app.post("/add-update-poi/add-poi", isAdminAuthorized, async (req, res) => {
 
   const poiFiltered = poi.filter((x) => !poiIds.find((y) => y.id === x.id));
 
+  if (poiFiltered.length === 0) {
+    return res.send({
+      hasAccessPermission: true,
+      data: {},
+      errorMessage: "",
+    });
+  }
+
   const poiData = poiFiltered.map((item) =>
     _.values({
       id: item.id,

@@ -217,15 +217,17 @@ function PerDayStats() {
     const result = fetchResult.data;
 
     setVisitsByUsers(
-      result.map(
-        (item) =>
-          [
-            {
-              number: item.number,
-              date: formatDate(new Date(item.visit_date)).split(" ")[0],
-            },
-          ][0]
-      )
+      result
+        .map(
+          (item) =>
+            [
+              {
+                number: item.number,
+                date: formatDate(new Date(item.visit_date)).split(" ")[0],
+              },
+            ][0]
+        )
+        .sort((a, b) => (a.date > b.date ? 1 : -1))
     );
   };
 
@@ -249,17 +251,21 @@ function PerDayStats() {
     const result = fetchResult.data;
 
     setVisitsByActiveCases(
-      result.map(
-        (item) =>
-          [
-            {
-              number: item.number,
-              date: formatDate(new Date(item.visit_date)).split(" ")[0],
-            },
-          ][0]
-      )
+      result
+        .map(
+          (item) =>
+            [
+              {
+                number: item.number,
+                date: formatDate(new Date(item.visit_date)).split(" ")[0],
+              },
+            ][0]
+        )
+        .sort((a, b) => (a.date > b.date ? 1 : -1))
     );
   };
+
+  console.log(visitsByUsers);
 
   return (
     <Paper
